@@ -7,6 +7,9 @@ import myApp.figure.factory.ShapeFactory;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +23,11 @@ public class Buttons {
     }
 
     private void createButton () throws FileNotFoundException {
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
         for (ShapeFactory factory : shapeFactors){
-            FileInputStream input = new FileInputStream("..\\OOP_new\\OOPcore\\src\\main\\resources\\img\\"+factory.getName()+".png");
+           // System.out.println("Current relative path is: " + s);
+            FileInputStream input = new FileInputStream(s+"\\OOPcore\\src\\main\\resources\\img\\"+factory.getName()+".png");
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
             Button button = new Button("",imageView);
